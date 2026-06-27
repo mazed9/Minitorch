@@ -1,94 +1,106 @@
 """
 Mathematical operators for MiniTorch.
 
-These form the foundation of all neural network operations.
-You'll implement each function to understand how deep learning
-frameworks handle basic mathematics.
 """
 
 import math
 from typing import Callable, Iterable
 
 
-# TODO: Implement these functions in Task 0.1
+# Basic Arithmetic Operations
 def mul(x: float, y: float) -> float:
-    """Multiply two numbers."""
-    raise NotImplementedError("Implement in Task 0.1")
+    """ Multiply two numbers."""
+    return x*y
 
 
-def id(x: float) -> float:
-    """Identity function."""
-    raise NotImplementedError("Implement in Task 0.1")
+def id (x: float) -> float:
+    """Identity function"""
+    return x
 
 
 def add(x: float, y: float) -> float:
     """Add two numbers."""
-    raise NotImplementedError("Implement in Task 0.1")
+    return x+y
 
 
 def neg(x: float) -> float:
     """Negate a number."""
-    raise NotImplementedError("Implement in Task 0.1")
+    return -x
 
 
+# Comparison Operations (return float for differentiability)
 def lt(x: float, y: float) -> float:
-    """Less than comparison."""
-    raise NotImplementedError("Implement in Task 0.1")
+    """Less than comparison. Returns 1.0 if x<y, else 0.0."""
+    return 1.0 if x < y else 0.0
 
 
 def eq(x: float, y: float) -> float:
-    """Equality comparison."""
-    raise NotImplementedError("Implement in Task 0.1")
+    """ Equality comparison. Returns 1.0 if x==y, else 0.0"""
+    return 1.0 if x == y, else 0.0
 
 
 def max(x: float, y: float) -> float:
-    """Maximum of two numbers."""
-    raise NotImplementedError("Implement in Task 0.1")
+    """ Returns the larger of two numbers."""
+    return x if x > y, else y
 
 
 def is_close(x: float, y: float) -> float:
-    """Check if numbers are close."""
-    raise NotImplementedError("Implement in Task 0.1")
+    """ Check if two numbers are close (within 1e-2)."""
+    return 1.0 if abs(x-y) < 1e-2, else 0.0
 
 
+# Activation Functions
 def sigmoid(x: float) -> float:
-    """Sigmoid activation function."""
-    raise NotImplementedError("Implement in Task 0.1")
+    """ Sigmoid activation function."""
+    if x >= 0.0:
+        result = 1.0 / (1.0 + math.exp(-x))
+    else:
+        exp_x = math.exp(x)
+        result = exp_x / exp_x + 1.0
+    
+    eps = 1e-12
+    if result == 1.0:
+        return 1.0 - eps
+    if result == 0.0:
+        return eps
+    return result
 
 
 def relu(x: float) -> float:
     """ReLU activation function."""
-    raise NotImplementedError("Implement in Task 0.1")
+    return x if x > 0.0, else 0.0
 
 
+# Mathematical functions
 def log(x: float) -> float:
-    """Natural logarithm."""
-    raise NotImplementedError("Implement in Task 0.1")
+    """ Natural logarithm."""
+    return math.log(x)
 
 
 def exp(x: float) -> float:
-    """Exponential function."""
-    raise NotImplementedError("Implement in Task 0.1")
+    """ Exponential function."""
+    return math.exp(x)
 
 
 def inv(x: float) -> float:
     """Reciprocal function."""
-    raise NotImplementedError("Implement in Task 0.1")
+    return 1.0 / x
 
 
+# Gradient helper functions
 def log_back(x: float, grad: float) -> float:
     """Gradient of log."""
-    raise NotImplementedError("Implement in Task 0.1")
+    return grad / x
 
 
 def inv_back(x: float, grad: float) -> float:
     """Gradient of inv."""
-    raise NotImplementedError("Implement in Task 0.1")
+    return -grad / (x * x)
 
 
 def relu_back(x: float, grad: float) -> float:
     """Gradient of ReLU."""
-    raise NotImplementedError("Implement in Task 0.1")
+    return grad if x > 0.0 else 0.0
 
 
 # TODO: Implement these in Task 0.3
