@@ -35,17 +35,17 @@ def lt(x: float, y: float) -> float:
 
 def eq(x: float, y: float) -> float:
     """ Equality comparison. Returns 1.0 if x==y, else 0.0"""
-    return 1.0 if x == y, else 0.0
+    return 1.0 if x == y else 0.0
 
 
 def max(x: float, y: float) -> float:
     """ Returns the larger of two numbers."""
-    return x if x > y, else y
+    return x if x > y else y
 
 
 def is_close(x: float, y: float) -> float:
     """ Check if two numbers are close (within 1e-2)."""
-    return 1.0 if abs(x-y) < 1e-2, else 0.0
+    return 1.0 if abs(x-y) < 1e-2 else 0.0
 
 
 # Activation Functions
@@ -67,7 +67,7 @@ def sigmoid(x: float) -> float:
 
 def relu(x: float) -> float:
     """ReLU activation function."""
-    return x if x > 0.0, else 0.0
+    return x if x > 0.0 else 0.0
 
 
 # Mathematical functions
@@ -110,7 +110,7 @@ def map(fn: Callable[[float], float]) -> Callable[[Iterable[float]], [Iterable[f
     return mapped
 
 
-def zipwith(fn : Callable[[float, float], float]) -> Callable[[Iterable[float], Iterable[float]], Iterable[float]]:
+def zipWith(fn : Callable[[float, float], float]) -> Callable[[Iterable[float], Iterable[float]], Iterable[float]]:
     """ Higher-order zipwith function."""
     def zipped(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
         return [fn(x, y) for x,y in zip(ls1, ls2)]
@@ -144,4 +144,4 @@ def negList(ls: Iterable[float]) -> Iterable[float]:
 
 def addList(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
     """ Add lists using zipwidth."""
-    return zipwith(add)(ls1, ls2)
+    return zipWith(add)(ls1, ls2)
