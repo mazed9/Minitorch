@@ -55,7 +55,7 @@ def sigmoid(x: float) -> float:
         result = 1.0 / (1.0 + math.exp(-x))
     else:
         exp_x = math.exp(x)
-        result = exp_x / exp_x + 1.0
+        result = exp_x / (exp_x + 1.0)
     
     eps = 1e-12
     if result == 1.0:
@@ -103,7 +103,7 @@ def relu_back(x: float, grad: float) -> float:
 
 
 # Highr-order functions
-def map(fn: Callable[[float], float]) -> Callable[[Iterable[float]], [Iterable[float]]]:
+def map(fn: Callable[[float], float]) -> Callable[[Iterable[float]], Iterable[float]]:
     """ Higher-order map function"""
     def mapped(ls: Iterable[float]) -> Iterable[float]:
         return [fn(x) for x in ls]
